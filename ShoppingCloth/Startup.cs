@@ -19,17 +19,23 @@ namespace ShoppingCloth
 {
     public class Startup
     {
-        private IConfigurationRoot _conString;
-        public Startup(HostingEnvironment hostEnv)
+        
+        public Startup(IConfiguration configuration)
         {
-            _conString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+            Configuration = configuration;
         }
+        public IConfiguration Configuration { get; }
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_conString.GetConnectionString("DefaultConnection")));
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст ApplicationContext в качестве сервиса в приложение
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddControllersWithViews();
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_conString.GetConnectionString("DefaultConnection")));
             services.AddTransient<IProductsCategory, CategoryRepository>();
             services.AddTransient<IAllProducts, ProductRepository>();
             services.AddControllersWithViews();
@@ -44,6 +50,13 @@ namespace ShoppingCloth
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
                 app.UseStaticFiles();
+
+                /*using (var Scope = app.ApplicationServices.CreateScope())
+                {
+                    ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
+                    DbObjects.Init(context);
+                }*/
+
                 //app.UseMvcWithDefaultRoute();
             }
             else
@@ -68,3 +81,4 @@ namespace ShoppingCloth
         }
     }
 }
+

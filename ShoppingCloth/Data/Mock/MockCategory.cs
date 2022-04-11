@@ -14,7 +14,7 @@ namespace ShoppingCloth.Data.Mock
                 {
                     new Category{ CategoryName = "Головной убор", Description = "Шапки,кепки"},
                     //new Category{ CategoryName = "Футболки", Description = "Красивые и не дорогие"},
-                    new Category{ CategoryName = "Трусы", Description = "Удобные"}
+                    new Category{ CategoryName = "Нижнее белье", Description = "Трусы"}
                 };
             }
         }

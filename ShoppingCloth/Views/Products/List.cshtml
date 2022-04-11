@@ -1,4 +1,5 @@
 ﻿@using ShoppingCloth.ViewModel
+@using ShoppingCloth.Data.Models
 @model ProductsListViewModel
 @{
     ViewData["Title"] = "List";
@@ -14,18 +15,13 @@
         <h1>Вся одежда</h1>
         <h3>@Model.currCategory</h3>
     @{
-       
-        foreach(var product in Model.AllProducts)
+
+        foreach(Product product in Model.AllProducts)
         {
-            <div class="col-lg-4">
-            <img class="img-thumbnail" src="@product.Image" alt="@product.Name"/>
-            <h2>Название: @product.Name</h2>
-            <p>Цены: @product.Price.ToString("c")</p>
-            <p><a class="btn btn-warning" href="#">Подробнее</a></p>
-            
-            </div>
+            @Html.Partial("AllProduct", product)
             
         }
+        
      }
     </body>
 </html>

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShoppingCloth.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using ShoppingCloth.Data.Models;
 using System.Linq;
 using System.Threading.Tasks;
 

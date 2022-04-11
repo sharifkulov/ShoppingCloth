@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingCloth.Data.Models;
 using Microsoft.Extensions.Logging;
-using ShoppingCloth.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

@@ -1,0 +1,12 @@
+﻿<h1>Все продукты</h1>
+@model Product
+
+<div class="col-lg-4">            
+     <img class="img-thumbnail" src="@Model.Image" alt="@Model.Name"/>
+     <h2>Название: @Model.Name</h2>           
+     <p>Описание: @Model.Description</p>
+     <p>Цены: @Model.Price.ToString("c")</p>
+     <p><a class="btn btn-warning" href="#">Подробнее</a></p>
+            
+</div>
+
